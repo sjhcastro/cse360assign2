@@ -17,30 +17,31 @@ public class SimpleList
 	public static void main(String args[])
 	{
 		SimpleList testList = new SimpleList();
-		testList.add(1);
-		testList.add(2);
-		testList.add(5);
-		testList.add(3);
-		testList.add(2);
-		testList.add(9);
-		testList.add(6);
-		testList.add(2);
-		testList.add(3);
-		testList.add(5);
-		testList.add(7);
-		testList.add(12);
+		for(int i = 0; i < 50; i++)
+		{
+			testList.append(i);
+		}
+		
+		for(int i = 0; i < 10; i++)
+		{
+			testList.remove(i);
+		}
+		
+		
+		System.out.println(testList.first());
+		System.out.println(testList.size());
+		//System.out.println(testList.list.length);
+		//System.out.println(testList.count);
 		
 		System.out.println(testList.toString());
-		testList.remove(2);
-		
-		System.out.println(testList.toString());
-		System.out.print("The value of count: " + testList.count());
+		//System.out.print("The value of count: " + testList.count());
 	
 	}
 	
 	
 	private int[] list;
 	private int count;
+	
 	
 	/**This is the constructor for the SimpleList class. This constructor creates an
 	 * integer array of size 10 and initializes count to 0. */
@@ -59,6 +60,13 @@ public class SimpleList
 	
 	public void add(int valueToAdd)
 	{
+		if(list.length == count)
+		{
+			int lengthNew = (int) Math.floor(count*1.5);
+			int[] tempList = new int[lengthNew];
+			this.arrayCopy(list, tempList);
+			list = tempList;
+		}
 		if(count == 0)
 		{
 			list[0] = valueToAdd;
@@ -72,17 +80,16 @@ public class SimpleList
 		}
 		else
 		{
-			for(int index = count - 1; index > 0; index --)
+			for(int index = count; index > 0; index --)
 			{
 				list[index] = list[index - 1];
+				
 			}
 			
 			list[0] = valueToAdd;
 			
-			if(count < 10)
-			{
-				count = count + 1;
-			}
+			count = count + 1;
+			
 			
 		}
 		
@@ -109,6 +116,13 @@ public class SimpleList
 			
 		}
 		
+		if(list.length > 1 && count/list.length < 0.75)
+		{
+			int lengthNew = list.length - 1 ;
+			int[] tempList = new int[lengthNew];
+			this.arrayCopy(list, tempList);
+			list = tempList;
+		}
 	}
 	
 	/**This is the count method. This method will return and integer which is the amount 
@@ -176,6 +190,40 @@ public class SimpleList
 		}
 		
 		return elementIndex;
+		
+	}
+	
+	public void append(int valueToAppend)
+	{
+		if(list.length == count)
+		{
+			int lengthNew = (int) Math.floor(count*1.5);
+			int[] tempList = new int[lengthNew];
+			this.arrayCopy(list, tempList);
+			list = tempList;
+		}
+		
+		list[count] = valueToAppend;
+		count = count + 1;
+	}
+	
+	public int first()
+	{
+		return list[0];
+	}
+	
+	public int size()
+	{
+		return list.length;
+	}
+	
+	private void arrayCopy(int[] arrayOne, int[] arrayTwo)
+	{
+		
+		for(int index = 0; index < count; index++)
+		{
+			arrayTwo[index] = arrayOne[index];
+		}
 		
 	}
 	
