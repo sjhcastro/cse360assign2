@@ -4,49 +4,18 @@ package cse360assign2;
 /**@author Saul James Castro, sjcastr1@asu.edu
  * @author Class ID: 234
  * @version Assignment 2 
- * This file contains the class SimpleList.java. This class has 9 methods: an add method,
- * a remove method, a count method, a toString method, and a search method. **/
+ * This file contains the class SimpleList.java. This class has 9 public methods: an add method,
+ * a remove method, a count method, a toString method, an append method, a first method,
+ * a last method, a size method and a search method.  The tenth method is a 
+ * private method that is a helper method used in the resizing of the lists.**/
 
-/**This class is called SimpleList. It is a public class that contains 8 methods.
+/**This class is called SimpleList. It is a public class that contains 9 public methods.
  * SimpleList allows the user to input integer values, remove values, search for 
  * values, print a string of the values, and keep track of the amount of values 
  * that are in the list by use of a count variable. */
 
 public class SimpleList 
 {
-	public static void main(String args[])
-	{
-		SimpleList testList = new SimpleList();
-		
-		for(int i = 0; i < 5; i++)
-		{
-			testList.append(i);
-		}
-		
-		for(int i = 0; i < 5; i++)
-		{
-			testList.add(i);
-		}
-		
-		System.out.println(testList.toString());
-		
-		for(int i = 0; i < 2; i++) 
-		{ 
-		   testList.remove(i); 
-		}
-		 
-		
-		
-		//System.out.println(testList.first());
-		System.out.println("The size of the list is: " + testList.size());
-		System.out.println("The first value is: " + testList.first());
-		System.out.println("The count of the array is: " + testList.count);
-		System.out.println("The last value is: " + testList.last());
-		System.out.println(testList.toString());
-		//System.out.print("The value of count: " + testList.count());
-	
-	}
-	
 	
 	private int[] list;
 	private int count;
@@ -65,6 +34,7 @@ public class SimpleList
 	 * will be added to the front of the list. Duplicates entries are allowed and if a value
 	 *  is added to a full list the last value will "fall off". Note that if the count is
 	 *  already 10, i.e. the list is full, and a value is added count will not be incremented. 
+	 *  If the list was full then the list size is increased by 50%. 
 	 * @param valueToAdd is the value that is to be added to the list*/
 	
 	public void add(int valueToAdd)
@@ -104,9 +74,10 @@ public class SimpleList
 	}
 
 	/**This is the remove method. The remove method will take in a value that is to be removed 
-	 * from the list. This method will utilize the search method to find all appearances of the 
-	 * given value and remove all of the from the list. Decrementing the count appropriately.
+	 * from the list. This method will utilize the search method to find the first appearances of the 
+	 * given value and remove it from the list. Decrementing the count appropriately.
 	 * If the value that is to be removed is not in the list then the list will remain unchanged.
+	 * If the list has more than 25% empty spaces then the size of the list is reduced by 25%.
 	 * @param valueToRemove is the value that is to be removed. */
 	
 	public void remove(int valueToRemove)
@@ -208,6 +179,11 @@ public class SimpleList
 		
 	}
 	
+	/**This is the append method. The append method is similar to the add method in 
+	 * that we will be making the list bigger. However append will place the values at 
+	 * the end of the list. If the list is already full then the size of the list
+	 * will be increased by 50%. 
+	 * @param valueToAppend are the values that we want to append to the list **/
 	
 	public void append(int valueToAppend)
 	{
@@ -225,6 +201,7 @@ public class SimpleList
 	
 	/**This is the first method. The first method gets the first value of the list.
 	 * If the list is empty the returned value is -1.**/
+	
 	public int first()
 	{
 		int valueToReturn;
@@ -241,6 +218,7 @@ public class SimpleList
 	
 	/**This is the last method. The last method gets the last value in the list. If the 
 	 * list is empty the returned value is -1.  **/
+	
 	public int last()
 	{
 		int valueToReturn;
@@ -257,6 +235,7 @@ public class SimpleList
 	}
 	
 	/**This is the size method. It returns the length or size of list. **/
+	
 	public int size()
 	{
 		return list.length;
@@ -267,6 +246,7 @@ public class SimpleList
 	 * the code easier to follow. 
 	 * @param arrayOne is the array we are copying into arrayTwo the newly sized array.
 	 * @param arrayTwo is the new array that has been resized**/
+	
 	private void arrayCopy(int[] arrayOne, int[] arrayTwo)
 	{
 		
