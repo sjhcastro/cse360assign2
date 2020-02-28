@@ -201,7 +201,8 @@ public class SimpleList
 	}
 	
 	/**This is the first method. The first method gets the first value of the list.
-	 * If the list is empty the returned value is -1.**/
+	 * If the list is empty the returned value is -1.
+	 * @return valueToReturn returns the value of the first element or -1**/
 	
 	public int first()
 	{
@@ -218,7 +219,8 @@ public class SimpleList
 	}
 	
 	/**This is the last method. The last method gets the last value in the list. If the 
-	 * list is empty the returned value is -1.  **/
+	 * list is empty the returned value is -1. 
+	 * @return valueToReturn returns the value of the last element or -1 **/
 	
 	public int last()
 	{
@@ -235,7 +237,8 @@ public class SimpleList
 		return valueToReturn;
 	}
 	
-	/**This is the size method. It returns the length or size of list. **/
+	/**This is the size method. It returns the length or size of list. 
+	 * @return list.lenght returns the size of the list**/
 	
 	public int size()
 	{
