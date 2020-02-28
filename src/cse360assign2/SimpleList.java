@@ -1,13 +1,14 @@
 package cse360assign2;
 
-
 /**@author Saul James Castro, sjcastr1@asu.edu
  * @author Class ID: 234
- * @version Assignment 2 
+ * @version Assignment 2
+ * @version https://github.com/sjhcastro/cse360assign2
  * This file contains the class SimpleList.java. This class has 9 public methods: an add method,
  * a remove method, a count method, a toString method, an append method, a first method,
  * a last method, a size method and a search method.  The tenth method is a 
- * private method that is a helper method used in the resizing of the lists.**/
+ * private method that is a helper method used in the resizing of the lists. All corrections
+ * have been made from the Assignment 1.**/
 
 /**This class is called SimpleList. It is a public class that contains 9 public methods.
  * SimpleList allows the user to input integer values, remove values, search for 
