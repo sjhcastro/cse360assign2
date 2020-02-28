@@ -3,11 +3,11 @@ package cse360assign2;
 
 /**@author Saul James Castro, sjcastr1@asu.edu
  * @author Class ID: 234
- * @version Assignment 1 
- * This file contains the class SimpleList.java. This class has 5 methods: an add method,
+ * @version Assignment 2 
+ * This file contains the class SimpleList.java. This class has 9 methods: an add method,
  * a remove method, a count method, a toString method, and a search method. **/
 
-/**This class is called SimpleList. It is a public class that contains 5 methods.
+/**This class is called SimpleList. It is a public class that contains 8 methods.
  * SimpleList allows the user to input integer values, remove values, search for 
  * values, print a string of the values, and keep track of the amount of values 
  * that are in the list by use of a count variable. */
@@ -17,22 +17,31 @@ public class SimpleList
 	public static void main(String args[])
 	{
 		SimpleList testList = new SimpleList();
-		for(int i = 0; i < 50; i++)
+		
+		for(int i = 0; i < 5; i++)
 		{
 			testList.append(i);
 		}
 		
-		for(int i = 0; i < 10; i++)
+		for(int i = 0; i < 5; i++)
 		{
-			testList.remove(i);
+			testList.add(i);
 		}
 		
+		System.out.println(testList.toString());
 		
-		System.out.println(testList.first());
-		System.out.println(testList.size());
-		//System.out.println(testList.list.length);
-		//System.out.println(testList.count);
+		for(int i = 0; i < 2; i++) 
+		{ 
+		   testList.remove(i); 
+		}
+		 
 		
+		
+		//System.out.println(testList.first());
+		System.out.println("The size of the list is: " + testList.size());
+		System.out.println("The first value is: " + testList.first());
+		System.out.println("The count of the array is: " + testList.count);
+		System.out.println("The last value is: " + testList.last());
 		System.out.println(testList.toString());
 		//System.out.print("The value of count: " + testList.count());
 	
@@ -90,7 +99,6 @@ public class SimpleList
 			
 			count = count + 1;
 			
-			
 		}
 		
 	}
@@ -105,7 +113,7 @@ public class SimpleList
 	{
 		int searchValue = search(valueToRemove);
 		
-		if(searchValue != -1)
+		if(searchValue != -1 && count > 1)
 		{
 			for(int index = searchValue; index < count - 1; index ++)
 			{
@@ -116,13 +124,21 @@ public class SimpleList
 			
 		}
 		
-		if(list.length > 1 && count/list.length < 0.75)
+		if(size() > 0)
 		{
-			int lengthNew = list.length - 1 ;
-			int[] tempList = new int[lengthNew];
-			this.arrayCopy(list, tempList);
-			list = tempList;
+			double calcVal = (double)(size()-count)/size()*100;
+			int newValue = (int) calcVal;
+			
+			if(newValue >= 25)
+			{
+				calcVal = (double) 0.75*size();
+				newValue = (int) calcVal;
+				int[] tempList = new int[newValue];
+				this.arrayCopy(list, tempList);
+				list = tempList;
+			}
 		}
+		
 	}
 	
 	/**This is the count method. This method will return and integer which is the amount 
@@ -132,7 +148,6 @@ public class SimpleList
 	public int count()
 	{
 		return count;
-	
 	}
 	
 	/**This is the toString method. This method will return the list as a string with a space 
@@ -193,6 +208,7 @@ public class SimpleList
 		
 	}
 	
+	
 	public void append(int valueToAppend)
 	{
 		if(list.length == count)
@@ -207,16 +223,50 @@ public class SimpleList
 		count = count + 1;
 	}
 	
+	/**This is the first method. The first method gets the first value of the list.
+	 * If the list is empty the returned value is -1.**/
 	public int first()
 	{
-		return list[0];
+		int valueToReturn;
+		if(count == 0)
+		{
+			 valueToReturn = -1;
+		}
+		else
+		{
+			valueToReturn = list[0];
+		}
+		return valueToReturn;
 	}
 	
+	/**This is the last method. The last method gets the last value in the list. If the 
+	 * list is empty the returned value is -1.  **/
+	public int last()
+	{
+		int valueToReturn;
+		if(count == 0)
+		{
+			valueToReturn = -1;
+		}
+		else
+		{
+			valueToReturn = list[count - 1];
+		}
+		
+		return valueToReturn;
+	}
+	
+	/**This is the size method. It returns the length or size of list. **/
 	public int size()
 	{
 		return list.length;
 	}
 	
+	/**This is a method that aids in the resizing of the list by copying the values
+	 * of the old list into a new list. This is a helper method that I added to make the 
+	 * the code easier to follow. 
+	 * @param arrayOne is the array we are copying into arrayTwo the newly sized array.
+	 * @param arrayTwo is the new array that has been resized**/
 	private void arrayCopy(int[] arrayOne, int[] arrayTwo)
 	{
 		
